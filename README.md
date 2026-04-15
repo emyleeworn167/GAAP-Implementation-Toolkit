@@ -1,101 +1,46 @@
-# Open Tax Infrastructure Toolkit
+# GAAP Implementation Tracker
 
-Computational methods for detecting tax compliance anomalies — reproducible detection algorithms for researchers, enforcement practitioners, and compliance professionals.
+Track how U.S. public companies implement complex accounting standards, using SEC EDGAR public data.
 
-**Author:** Jiayan Fan
+## The problem
 
-## Overview
+FASB issues accounting standards. Those standards work for routine transactions. But when a deal combines derivatives with leases, or when a consolidation question involves shared control, the standard does not give a clear answer. Every practitioner develops their own interpretation. The result: companies with identical economics end up with different financial statements.
 
-This toolkit implements peer-reviewed detection algorithms across three technically distinct anomaly categories:
+This dashboard tracks those differences.
 
-1. **Transfer Pricing Manipulation** — Detects non-arm's-length pricing in related-party transactions using OECD-aligned comparability analysis, profit level indicator screening, and Benford's Law conformity testing.
+## What it tracks
 
-2. **Tax Filing Irregularities** — Identifies inconsistencies across filed returns, financial statements, and supporting documentation through cross-document consistency checks and numerical pattern analysis.
+**Topic 832 (Government Grants)** — A new standard affecting every company receiving CHIPS Act, IRA, or infrastructure funding. Tracks adoption patterns, recognition method elections, and disclosure approaches as companies begin implementation.
 
-3. **Cross-Border Transaction Fraud** — Analyzes e-commerce and digital payment flows using transaction network analysis, jurisdiction risk scoring, and unsupervised anomaly detection to surface patterns that obscure taxable income.
+**ASC 815 (Derivatives & Hedging)** — One of the most complex areas of U.S. GAAP. Analyzes disclosure patterns and derivative positions across SEC filers using XBRL data.
 
-Each module corresponds to methodologies developed from three years of professional transfer pricing work at Ernst & Young and Deloitte — including direct TP defense for multinational clients, value chain analyses, and Advance Pricing Agreement negotiations — and documented in nine peer-reviewed publications cited 210+ times across 74 U.S. cities and 47 countries.
+**Restatement Patterns** — Which accounting standard areas produce the most financial reporting errors, tracked through amended SEC filings.
 
-## Installation
+## Live dashboard
 
-```bash
-pip install -e ".[dev]"
-```
+[View the dashboard](https://gaap-tracker.streamlit.app) (Streamlit Cloud)
 
-## Quick Start
+## Run locally
 
 ```bash
-# Run the built-in demo with synthetic data
-tax-toolkit demo
-
-# Or use Python directly
-python examples/quickstart.py
+git clone https://github.com/placeholder/gaap-tracker.git
+cd gaap-tracker
+pip install -r requirements.txt
+streamlit run app.py
 ```
 
-```python
-from open_tax_toolkit.utils.data_gen import SyntheticDataGenerator
-from open_tax_toolkit.transfer_pricing import ComparabilityAnalysis
+## Data sources
 
-gen = SyntheticDataGenerator(seed=42)
-data = gen.comparable_companies(n_comparables=30, n_anomalous=3)
+All data comes from free SEC EDGAR public APIs. No paid data sources. No API key required.
 
-analyzer = ComparabilityAnalysis(indicator="operating_margin")
-result = analyzer.analyze(
-    comparables=data[data["label"] == "comparable"],
-    tested_party_value=-0.05,
-)
-print(f"Within arm's length range: {result.is_within_range}")
-print(f"Range: [{result.q1:.4f}, {result.q3:.4f}]")
-```
+- **EFTS** — Full-text search across all SEC filings
+- **XBRL Frames** — Structured financial data across all filers
+- **Company Facts** — Detailed XBRL data for individual companies
 
-## Modules
+## Contributing
 
-### Transfer Pricing (`open_tax_toolkit.transfer_pricing`)
-
-- **ComparabilityAnalysis** — OECD interquartile range method for arm's length testing
-- **ProfitIndicatorScreen** — Multi-PLI screening (operating margin, Berry ratio, net cost plus, ROA)
-- **BenfordAnalysis** — First/second digit distribution testing with chi-squared goodness-of-fit
-
-### Filing Irregularities (`open_tax_toolkit.filing_irregularities`)
-
-- **ConsistencyChecker** — Cross-document numerical consistency with severity classification
-- **NumericalAnalyzer** — Sum validation, rounding pattern detection, last-two-digits uniformity test
-
-### Cross-Border Transactions (`open_tax_toolkit.cross_border`)
-
-- **TransactionNetwork** — Graph-based circular flow detection and hub entity analysis
-- **JurisdictionRiskScorer** — Composite risk scoring based on transparency indices
-- **PatternDetector** — Isolation Forest anomaly detection with composite risk weighting
-
-## Testing
-
-```bash
-pytest
-```
-
-All tests use synthetic data generators — no real tax data is required or included.
-
-## Project Structure
-
-```
-open_tax_toolkit/
-├── transfer_pricing/      # Module 1: TP manipulation detection
-│   ├── comparability.py   # IQR-based arm's length analysis
-│   ├── profit_indicator.py # PLI screening
-│   └── benford.py         # Benford's Law testing
-├── filing_irregularities/ # Module 2: Filing inconsistency detection
-│   ├── consistency.py     # Cross-document checks
-│   └── numerical.py       # Numerical pattern analysis
-├── cross_border/          # Module 3: Cross-border fraud detection
-│   ├── network.py         # Transaction graph analysis
-│   ├── risk_scoring.py    # Jurisdiction risk scoring
-│   └── pattern.py         # Unsupervised anomaly detection
-├── utils/
-│   ├── data_gen.py        # Synthetic data generators
-│   └── stats.py           # Shared statistical utilities
-└── cli.py                 # Command-line interface
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
+MIT

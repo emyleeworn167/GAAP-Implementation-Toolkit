@@ -1,48 +1,9 @@
-# Python
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
+data/db/*.db
+.env
+.DS_Store
 *.egg-info/
 dist/
 build/
-*.egg
-.eggs/
-
-# Virtual environments
-.venv/
-venv/
-ENV/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# Testing / Coverage
-.pytest_cache/
-.coverage
-htmlcov/
-.mypy_cache/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Data (never commit real tax data)
-data/raw/
-data/private/
-*.csv
-!examples/data/*.csv
-
-# Secrets
-.env
-*.key
-
-# Legacy Alteryx files
-*.yxwz
-*.yxmd
-*.yxmc
-*.bak
-*.yxzp
+.vercel
